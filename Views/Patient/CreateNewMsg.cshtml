@@ -1,0 +1,168 @@
+﻿@model ClinicPortal.Models.CRDIMgr.TheMessage
+
+
+@{
+    ViewBag.Title = "CreateNewMsg";
+
+    Layout = "~/Views/Shared/_LayoutPatient.cshtml";
+}
+<h2>CreateNewMsg</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>TheMessage</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @*<div class="form-group">
+                @Html.LabelFor(model => model.DOM, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.DOM, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.DOM, "", new { @class = "text-danger" })
+                </div>
+            </div>*@
+
+        @*<div class="form-group">
+                @Html.LabelFor(model => model.MessageFromID, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.MessageFromID, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.MessageFromID, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.MessageFromType, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.MessageFromType, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.MessageFromType, "", new { @class = "text-danger" })
+                </div>
+            </div>*@
+        <div class="form-group">
+            @Html.LabelFor(model => model.MessageToType, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @*<select>
+                        <option value="UserRoles">Message to Type</option>
+                    </select>*@
+                @Html.DropDownList("MessageToType", null, new { id = "msgtotype", name = "MessageToType" })
+                @Html.ValidationMessageFor(model => model.MessageToType, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.MessageToID, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <select id="MessageToID" name="MessageToID">
+                    <option value="0">Select</option>
+                </select>
+                @Html.ValidationMessageFor(model => model.MessageToID, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Subject, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Subject, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Subject, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.MessageText, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.MessageText, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.MessageText, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.MessagePriority, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.MessagePriority, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.MessagePriority, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        @*<div class="form-group">
+                @Html.LabelFor(model => model.MessageStatus, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.MessageStatus, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.MessageStatus, "", new { @class = "text-danger" })
+                </div>
+            </div>*@
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+<script>
+
+    //$("#msgtotype").change(function () {
+
+    //    if $(this).data('UserRoles') {
+
+    //    }
+
+
+
+    //})
+
+
+     $(function () {
+
+         $('#msgtotype').change(function () {
+            //  debugger;
+             var id = $("#msgtotype :selected").val();
+            if (id != "") {
+                $.ajax({
+                    type: "GET",
+                    contentType: "application/json; charset=utf-8",
+                    url: '@Url.Action("MsgUserList", "Patient")',
+                    data: { "mUserType": id },
+                    dataType: "json",
+                    beforeSend: function () {
+                        //alert(id);
+                    },
+                    success: function (data) {
+
+                        var items = "";
+                        $.each(data, function (i, city) {
+                            items += "<option value='" + city.Value + "'>" + city.Text + "</option>";
+                        });
+                        $('#MessageToID').html(items);
+
+                    },
+                    error: function (result) {
+
+                        alert('Service call failed: ' + result.status + ' Type :' + result.statusText);
+                    }
+                });
+            }
+            else {
+                var items = '<option value="">Select</option>';
+                $('#City_ID').html(items);
+            }
+         });
+
+
+         $('#msgtotype').change();
+    });
+
+
+</script>

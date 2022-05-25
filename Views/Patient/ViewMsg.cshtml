@@ -1,0 +1,137 @@
+﻿@model IEnumerable<ClinicPortal.Models.CRDIMgr.TheMessage>
+
+@{
+    ViewBag.Title = "ViewMsg";
+    Layout = "~/Views/Shared/_LayoutPatient.cshtml";
+}
+
+<h2>ViewMsg</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.DOM)
+        </th>
+        @*<th>
+                @Html.DisplayNameFor(model => model.MessageFromID)
+            </th>*@
+        <th>
+            @Html.DisplayNameFor(model => model.MessageFromType)
+        </th>
+        @*<th>
+                @Html.DisplayNameFor(model => model.MessageToID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MessageToType)
+            </th>*@
+        <th>
+            @Html.DisplayNameFor(model => model.Subject)
+        </th>
+        @*<th>
+                @Html.DisplayNameFor(model => model.MessageText)
+            </th>*@
+        <th>
+            @Html.DisplayNameFor(model => model.MessagePriority)
+        </th>
+        @*<th>
+                @Html.DisplayNameFor(model => model.MessageStatus)
+            </th>*@
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+
+        if (item.MessageStatus == "Sent")
+        {
+
+
+
+            <tr id="bold">
+                <td>
+                    @Html.DisplayFor(modelItem => item.DOM)
+                </td>
+                @*<td>
+                        @Html.DisplayFor(modelItem => item.MessageFromID)
+                    </td>*@
+                <td>
+                    @Html.DisplayFor(modelItem => item.MessageFromType)
+                </td>
+                @*<td>
+                        @Html.DisplayFor(modelItem => item.MessageToID)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MessageToType)
+                    </td>*@
+                <td>
+                    @Html.DisplayFor(modelItem => item.Subject)
+                </td>
+                @*<td>
+                        @Html.DisplayFor(modelItem => item.MessageText)
+                    </td>*@
+                <td>
+                    @Html.DisplayFor(modelItem => item.MessagePriority)
+                </td>
+                @*<td>
+                        @Html.DisplayFor(modelItem => item.MessageStatus)
+                    </td>*@
+                <td>
+                    @Html.ActionLink("View Message", "ReadViewMsg", new { id = item.MessageID }) |
+                    @Html.ActionLink("Delete ", "DeleteViewMsg", new { id = item.MessageID }) |
+                </td>
+            </tr>
+        }
+
+
+
+        if (item.MessageStatus == "Read")
+        {
+
+
+
+            <tr id="notbold">
+                <td>
+                    @Html.DisplayFor(modelItem => item.DOM)
+                </td>
+                @*<td>
+                        @Html.DisplayFor(modelItem => item.MessageFromID)
+                    </td>*@
+                <td>
+                    @Html.DisplayFor(modelItem => item.MessageFromType)
+                </td>
+                @*<td>
+                        @Html.DisplayFor(modelItem => item.MessageToID)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MessageToType)
+                    </td>*@
+                <td>
+                    @Html.DisplayFor(modelItem => item.Subject)
+                </td>
+                @*<td>
+                        @Html.DisplayFor(modelItem => item.MessageText)
+                    </td>*@
+                <td>
+                    @Html.DisplayFor(modelItem => item.MessagePriority)
+                </td>
+                @*<td>
+                        @Html.DisplayFor(modelItem => item.MessageStatus)
+                    </td>*@
+                <td>
+                    @Html.ActionLink("View Message", "ReadViewMsg", new { id = item.MessageID }) |
+                    @Html.ActionLink("Delete ", "DeleteViewMsg", new { id = item.MessageID }) |
+                </td>
+            </tr>
+        }
+    }
+
+</table>
+
+
+
+<script>
+    document.getElementById("bold").style.fontWeight = "900";
+
+
+</script>

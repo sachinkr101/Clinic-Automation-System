@@ -1,0 +1,75 @@
+﻿@model IEnumerable<ClinicPortal.Models.CRDIMgr.Drug>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutPhysician.cshtml";
+}
+@using (Html.BeginForm("ViewDrugInventory", "Physician", FormMethod.Get))
+{
+    <br>
+    //the following are search options
+    <b> Search Option: </b>@Html.RadioButton("option", "Name") <text>Name</text> @Html.RadioButton("option", "SubName") <text> Subsitute Name </text>
+    @Html.TextBox("search")
+    <input type="submit" name="submit" value="Search" />
+}
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.DrugName)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.Uses)
+        </th>
+        <th>
+            Quantity
+        </th>
+
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.DrugName)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.Uses)
+            </td>
+
+            <td>
+                @if (item.LotOrBatches.Count > 0)
+                {
+                    <h6>
+                        @{
+                            var rst = item.LotOrBatches.Where(l => l.ExpDate > DateTime.Now).Sum(s => s.QOH);
+                            @rst
+
+                        }
+                    </h6>
+                }
+                else
+                {
+                    <h6>Not Avaliable</h6>
+                }
+            </td>
+
+            <td>
+
+                @Html.ActionLink("Details", "Details", new { id = item.DrugID })
+                @Html.ActionLink("Edit", "Edit", new { id = item.DrugID })
+
+            </td>
+        </tr>
+    }
+
+</table>
+
+
+<button class=" btn-close-white">@Html.ActionLink("Refresh", "ViewDrugInventory")</button>
+
+
+
+
+
+

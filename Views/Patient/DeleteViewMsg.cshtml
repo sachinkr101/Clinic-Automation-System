@@ -1,0 +1,99 @@
+﻿@model ClinicPortal.Models.CRDIMgr.TheMessage
+
+
+@{
+    ViewBag.Title = "DeleteViewMsg";
+    Layout = "~/Views/Shared/_LayoutPatient.cshtml";
+}
+
+
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>TheMessage</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.DOM)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DOM)
+        </dd>
+
+        @*<dt>
+                @Html.DisplayNameFor(model => model.MessageFromID)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.MessageFromID)
+            </dd>*@
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MessageFromType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MessageFromType)
+        </dd>
+
+        @*<dt>
+                @Html.DisplayNameFor(model => model.MessageToID)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.MessageToID)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.MessageToType)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.MessageToType)
+            </dd>*@
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Subject)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Subject)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MessageText)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MessageText)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MessagePriority)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MessagePriority)
+        </dd>
+
+        @*<dt>
+                @Html.DisplayNameFor(model => model.MessageStatus)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.MessageStatus)
+            </dd>*@
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "ViewMsg")
+        </div>
+    }
+</div>

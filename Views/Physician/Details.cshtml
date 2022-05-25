@@ -1,0 +1,63 @@
+﻿@model ClinicPortal.Models.CRDIMgr.Drug
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutPhysician.cshtml";
+}
+<div>
+    <h4>Drug</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.DrugName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DrugName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Manufacturer)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Manufacturer)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Substitutions)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Substitutions)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Uses)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Uses)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SideEffects)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SideEffects)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NotRecommended)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NotRecommended)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.DrugID }) |
+    @Html.ActionLink("Back to List", "ViewDrugInventory")
+</p>

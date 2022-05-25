@@ -1,0 +1,83 @@
+﻿@model ClinicPortal.Models.CRDIMgr.TheMessage
+
+
+
+@{
+    ViewBag.Title = "ReadViewMsg";
+    Layout = "~/Views/Shared/_LayoutPhysician.cshtml";
+}
+
+<h2>ReadViewMsg</h2>
+
+<div>
+    <h4>TheMessage</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.DOM)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DOM)
+        </dd>
+
+        <dt>
+            Message from
+        </dt>
+
+        <dd>
+            @ViewBag.msgFromName
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.MessageFromType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MessageFromType)
+        </dd>
+
+        @*<dt>
+                @Html.DisplayNameFor(model => model.MessageToID)
+            </dt>*@
+
+        @*<dd>
+                @Html.DisplayFor(model => model.MessageToID)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.MessageToType)
+            </dt>*@
+
+        @*<dd>
+                @Html.DisplayFor(model => model.MessageToType)
+            </dd>*@
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Subject)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Subject)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MessageText)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MessageText)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MessagePriority)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MessagePriority)
+        </dd>
+
+        @Html.ActionLink("Back", "ViewMsg")
+
+    </dl>
+</div>
+

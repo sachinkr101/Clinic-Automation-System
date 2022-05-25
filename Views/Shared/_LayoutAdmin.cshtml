@@ -1,0 +1,118 @@
+﻿
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+
+    <script src="~/Scripts/modernizr-2.8.3.js"></script>
+</head>
+<body>
+
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light" style="background-color: #e3f2fd;">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Clinic Application</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+                    <li class="nav-item">
+                        @Html.ActionLink("In-Box", "InBox", "Admin", new { @class = "nav-link active" })
+                    </li>
+
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Physician
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li>   <a class="dropdown-item" href='@Url.Action(actionName:"AddPhysician")'>Add New Physician</a></li>
+                            <li><a class="dropdown-item" href='@Url.Action(actionName:"EditPhysicianInfo")'>Modify/ Update Physician</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="#">Deactivate Physician</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Patient
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li>   <a class="dropdown-item" href='@Url.Action(actionName:"AddPatient")'>Add New Patient</a></li>
+                            <li><a class="dropdown-item" href="#">Modify/ Update Patient</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="#">Deactivate Patient</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Salesman
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li>   <a class="dropdown-item" href='@Url.Action(actionName:"AddSalesman")'>Add New Salesman</a></li>
+                            <li><a class="dropdown-item" href="#">Modify/ Update Salesman</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="#">Deactivate Salesman</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Supplier
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href='@Url.Action(actionName:"AddSupplier")'>Add New Supplier</a></li>
+                            <li><a class="dropdown-item" href="#">Modify/ Update Supplier</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="#">Deactivate Supplier</a></li>
+                        </ul>
+                    </li>
+
+
+
+                    @if (User.Identity.IsAuthenticated)
+                    {
+
+                        <li class="nav-item">
+                            <a class="nav-link disabled">Hello - @User.Identity.Name</a>
+                        </li>
+
+                        <li class="nav-item">
+                            @Html.ActionLink("Logout", "Logout", "SecGateWay", new { @class = "nav-link active" })
+                        </li>
+
+
+                    }
+                    else
+                    {
+                        <li>@Html.ActionLink("Login", "Login", "SecGateWay")</li>
+                    }
+
+
+
+
+                </ul>
+
+            </div>
+        </div>
+    </nav>
+
+
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+        </footer>
+    </div>
+
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+</body>
+</html>

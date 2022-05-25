@@ -1,0 +1,89 @@
+﻿@model IEnumerable<ClinicPortal.Models.CRDIMgr.Supplier>
+
+
+@{
+    ViewBag.Title = "ModifySupplier";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>ModifySupplier</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LastName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Address)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AboutSupplier)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CurrentStatus)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.User.UserName)
+        </th>
+
+
+        <th>
+            @Html.DisplayNameFor(model => model.User.EmailID)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.User.IsActive)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.User.IsLocked)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.FirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LastName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Address)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AboutSupplier)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CurrentStatus)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.User.UserName)
+            </td>
+
+
+            <td>
+                @Html.DisplayFor(model => item.User.EmailID)
+            </td>
+
+            <td>
+                @Html.DisplayFor(model => item.User.IsActive)
+            </td>
+
+            <td>
+                @Html.DisplayFor(model => item.User.IsLocked)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "EditSupplierInfo", new { id = item.SupplierID })
+
+            </td>
+        </tr>
+    }
+
+</table>
